@@ -55,14 +55,6 @@ gulp.task('js', function() {
         .pipe(gulp.dest(path.jsDest));
 });
 
-gulp.task('start', function () {
-    nodemon({
-        script: 'server.js',
-        ext: 'js html',
-        env: { 'NODE_ENV': 'development' }
-    });
-});
-
 gulp.task('templates', function() {
     return gulp.src(path.tmplSrc + '/*.html')
         .pipe(gulp.dest(path.tmplDest));
