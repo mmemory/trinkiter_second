@@ -1,3 +1,4 @@
+//Vendor
 @import "../../vendor/singularity/stylesheets/singularitygs";
 @import "../../vendor/breakpoint-sass/stylesheets/breakpoint";
 @import "../../vendor/compass-sass-mixins/lib/compass";
@@ -8,10 +9,11 @@
 @import "base/reset";
 @import "base/heightWidthReset";
 @import "base/typography";
+@import "base/grids";
 
 //General
-@import "general/form-fields";
-@import "general/header";
+@import "components/form-fields";
+@import "components/header";
 
 //Components
-@import "login/user-info-form";
+@import "components/login/user-info-form";

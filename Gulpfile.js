@@ -7,6 +7,7 @@ var watch = require('gulp-watch');
 var nodemon = require('gulp-nodemon');
 var browserSync = require('browser-sync').create();
 var historyApiFallback = require('connect-history-api-fallback');
+var plumber = require('gulp-plumber');
 
 var path = {
     sassSrc: 'public/src/sass',
@@ -34,7 +35,10 @@ gulp.task('serve',['sass'], function() {
 });
 
 gulp.task('sass', function() {
-    return gulp.src(path.sassSrc+'/style.scss')
+    gulp.src(path.sassSrc+'/style.scss')
+        .pipe(plumber({
+            errorHandler: true
+        }))
         .pipe(sourcemaps.init({
             loadMaps: true,
             debug: true
@@ -43,6 +47,7 @@ gulp.task('sass', function() {
             errLogToConsole: true
         }))
         .pipe(sourcemaps.write())
+        .pipe(plumber.stop())
         .pipe(gulp.dest(path.cssDest))
         .pipe(browserSync.stream());
 });
