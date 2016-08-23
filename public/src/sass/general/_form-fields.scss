@@ -1,0 +1,22 @@
+form {
+
+  input[type="text"],
+  input[type="password"]{
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+    border-color: grey;
+  }
+}
+
+.button-auth {
+  width: 200px;
+  border-radius: 10px;
+  background-color: grey;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}

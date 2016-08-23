@@ -1,0 +1,10 @@
+<section class="form-wrapper container">
+	<div class="login-form container">
+		<form class="container">
+			<input ng-model="userInfo.username" type="text" placeholder="Username">
+			<input ng-model="userInfo.password" type="password" placeholder="Password">
+			<div class="button-auth" ng-click="localAuth(userInfo)">Login</div>
+			<a ui-sref="register">Or Register Here</a>
+		</form>
+	</div>
+</section>
