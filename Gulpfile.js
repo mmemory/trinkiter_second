@@ -19,12 +19,15 @@ var path = {
     indexPath: 'public/index.html'
 };
 
-gulp.task('serve',['sass'], function() {
+gulp.task('sync',['sass'], function() {
     browserSync.init({
-        server: {
-            baseDir: "./public",
-            middleware: [ historyApiFallback() ]
-        },
+        // server: {
+        //     baseDir: "./public"
+        //
+        // },
+        middleware: [ historyApiFallback() ],
+        proxy: "http://localhost:3000",
+        files: './public',
         open: false,
         notify: false
     });
@@ -60,6 +63,8 @@ gulp.task('js', function() {
         .pipe(gulp.dest(path.jsDest));
 });
 
+//gulp.task('server', )
+
 gulp.task('templates', function() {
     return gulp.src(path.tmplSrc + '/*.html')
         .pipe(gulp.dest(path.tmplDest));
@@ -72,5 +77,5 @@ gulp.task('watch', function() {
 
 });
 
-gulp.task('default', ['sass','templates','js','watch','serve']);
+gulp.task('default', ['sass','templates','js','watch','sync']);
 
