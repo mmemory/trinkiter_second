@@ -1,0 +1,21 @@
+@include add-grid(12);
+@include add-gutter(0);
+
+//Dashboard
+.dashboard-content-container {
+  @include grid-span(9, 1);
+
+  .trinkit-item-container {
+    //@include float-span(4, $grid: 12);
+    float: left;
+    //display: inline-block;
+    //@include grid-span(3, 1, $output-style: 'float');
+  }
+}
+
+.matches-container {
+  @include grid-span(3, 10);
+}
+
+
+

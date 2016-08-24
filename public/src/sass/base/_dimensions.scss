@@ -1,2 +1,4 @@
-$header_height: 100px;
+$header_height: 60px;
+$toolbar_height: 13px;
 $minus_header: calc(100% - #{$header_height});
+$minus_header_toolbar: calc(100% - #{$toolbar_height});

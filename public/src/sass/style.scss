@@ -17,3 +17,13 @@
 
 //Components
 @import "components/login/user-info-form";
+@import "components/trinkit/trinkit";
+
+//Navigation
+@import "components/navigation/navigation-generic";
+
+//Dashboard
+@import "components/dashboard/dashboard-generic";
+@import "components/dashboard/dashboard-content";
+@import "components/dashboard/dashboard-matches";
+@import "components/dashboard/dashboard-toolbar";

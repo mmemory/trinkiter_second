@@ -38,6 +38,17 @@ app.post('/api/users/login', function(req, res) {
     res.send(newUser);
 });
 
+app.post('/api/users/register', function(req, res) {
+    console.log(req.body);
+    var newUser = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        username: req.body.username,
+        email: req.body.email
+    };
+    res.send(newUser);
+});
+
 app.get('/api/trinkits', function(req, res) {
 
 

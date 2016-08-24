@@ -1,12 +1,12 @@
 var trinkiter = angular.module('trinkiter',['ui.router'])
     .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
-        var tmplPath = './build/templates/';
+        var tmplPath = './src/templates/';
 
-        $locationProvider.html5Mode({
-            enabled: true,
-            requireBase: false
-        });
+        // $locationProvider.html5Mode({
+        //     enabled: true,
+        //     requireBase: false
+        // });
 
         $urlRouterProvider.otherwise("/welcome");
 
@@ -29,5 +29,15 @@ var trinkiter = angular.module('trinkiter',['ui.router'])
                 url: '/dashboard',
                 templateUrl: tmplPath+'dashboardTmpl.html',
                 controller: 'dashCtrl'
+            })
+            .state('dashboard.trinkits', {
+                url: '/trinkits',
+                templateUrl: tmplPath+'dashboard-trinkits-tmpl.html',
+                controller: 'trinkitCtrl'
+            })
+            .state('dashboard.account', {
+                url: '/account',
+                templateUrl: tmplPath+'dashboard-account-tmpl.html',
+                controller: 'accountCtrl'
             });
     });

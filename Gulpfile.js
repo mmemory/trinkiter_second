@@ -20,21 +20,20 @@ var path = {
 };
 
 gulp.task('sync',['sass'], function() {
-    browserSync.init({
-        // server: {
-        //     baseDir: "./public"
-        //
-        // },
-        middleware: [ historyApiFallback() ],
-        proxy: "http://localhost:3000",
+    browserSync.init(null, {
+        proxy: {
+            target: 'http://localhost:3000',
+            middleware: [ historyApiFallback() ]
+        },
         files: './public',
         open: false,
         notify: false
     });
 
     gulp.watch(path.sassSrc+'/style.scss',['sass']);
-    gulp.watch(path.indexPath).on('change', browserSync.reload);
-    gulp.watch(path.tmplSrc+'/*.html').on('change', browserSync.reload);
+    //gulp.watch(path.indexPath).on('change', browserSync.reload);
+    //gulp.watch(path.tmplSrc+'/*.html').on('change', browserSync.reload);
+    //browserSync.watch(path.tmplSrc+'/*.html').on('change', browserSync.reload);
 });
 
 gulp.task('sass', function() {
@@ -65,17 +64,17 @@ gulp.task('js', function() {
 
 //gulp.task('server', )
 
-gulp.task('templates', function() {
-    return gulp.src(path.tmplSrc + '/*.html')
-        .pipe(gulp.dest(path.tmplDest));
-});
+// gulp.task('templates', function() {
+//     return gulp.src(path.tmplSrc + '/*.html')
+//         .pipe(gulp.dest(path.tmplDest));
+// });
 
 gulp.task('watch', function() {
     gulp.watch(path.jsSrc + '/**/*.js', ['js']);
     gulp.watch(path.sassSrc + '/**/*.scss',['sass']);
-    gulp.watch(path.tmplSrc + '/*.html', ['templates']);
+    //gulp.watch(path.tmplSrc + '/*.html', ['templates']);
 
 });
 
-gulp.task('default', ['sass','templates','js','watch','sync']);
+gulp.task('default', ['sass','js','watch','sync']);
 

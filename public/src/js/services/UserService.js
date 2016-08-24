@@ -1,4 +1,4 @@
-trinkiter.factory('LoginService', ['$http',function($http) {
+trinkiter.factory('UserService', ['$http',function($http) {
 
     return {
         localAuth: function(user) {
@@ -6,6 +6,9 @@ trinkiter.factory('LoginService', ['$http',function($http) {
         },
         logout: function() {
             return $http.get('/api/users/logout');
+        },
+        register: function(user) {
+            return $http.post('/api/users/register', user);
         }
     }
 }]);

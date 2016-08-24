@@ -1,0 +1,14 @@
+<section class="dashboard-container">
+	<div class="toolbar-container">
+		<a class="toolbar-link" ui-sref-active="active" ui-sref="dashboard.trinkits">Trinkits</a>
+		<a class="toolbar-link" ui-sref-active="active" ui-sref="dashboard.account">Account</a>
+	</div>
+
+	<section class="dashboard-content-container" ui-view></section>
+
+	<aside class="matches-container">
+		<header><h2>Matches</h2></header>
+		<tr-match match-data="match" ng-repeat="match in matches"></tr-match>
+	</aside>
+
+</section>
