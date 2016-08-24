@@ -1,0 +1,17 @@
+.matches-container {
+  border-left: solid 1px black;
+  height: $minus_header_toolbar;
+  overflow-y: auto;
+
+  header {
+    border-bottom: solid 1px black;
+    padding: 5px;
+  }
+
+  .match-container {
+    width: 100%;
+    padding: 5px;
+    border-bottom: solid 1px black;
+    min-height: 75px;
+  }
+}

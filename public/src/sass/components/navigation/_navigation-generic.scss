@@ -1,0 +1,23 @@
+a.active.active {
+  background-color: #fff;
+  color: black;
+}
+
+.toolbar-container {
+  padding: 0 20px;
+  background-color: grey;
+
+  .toolbar-link {
+    padding: 5px 10px;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    height: 100%;
+  }
+
+  .toolbar-link:hover {
+    background-color: #fff;
+    color: black;
+  }
+}
+

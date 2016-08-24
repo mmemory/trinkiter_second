@@ -1,0 +1,22 @@
+.trinkit-items-container {
+  //display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  height: 100%;
+  //padding: 5px;
+
+  .trinkit-item-container {
+    height: 100px;
+    background-color: yellow;
+    //margin: 5px;
+    //width: 33.333%;
+    //min-width: 300px;
+    //min-height: 400px;
+    //max-width: 300px;
+  }
+}
+
+
+
+
