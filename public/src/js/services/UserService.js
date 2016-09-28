@@ -2,6 +2,7 @@ trinkiter.factory('UserService', ['$http',function($http) {
 
     return {
         localAuth: function(user) {
+            console.log(user);
             return $http.post('/api/users/login', user);
         },
         logout: function() {

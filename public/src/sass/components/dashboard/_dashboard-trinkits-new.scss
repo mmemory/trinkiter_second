@@ -1,0 +1,30 @@
+.new-trinkit-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, .5);
+
+  .new-trinkit-inner {
+    height: 100vh;
+    width: 60%;
+    max-width: 600px;
+    background-color: rgba(255, 255, 255, .92);
+    margin: 0 auto;
+    position: relative;
+
+    .close-modal {
+      color: white;
+      width: 50px;
+      padding: 17px 0;
+      text-align: center;
+      background-color: black;
+      border-radius: 50%;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      cursor: pointer;
+    }
+  }
+}

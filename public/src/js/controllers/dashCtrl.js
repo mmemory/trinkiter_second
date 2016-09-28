@@ -1,4 +1,4 @@
-trinkiter.controller('dashCtrl', ['$scope',function($scope) {
+trinkiter.controller('dashCtrl', ['$scope','TrinkitService',function($scope,TrinkitService, UserService) {
 
     $scope.matches = [
         {
@@ -17,5 +17,8 @@ trinkiter.controller('dashCtrl', ['$scope',function($scope) {
             title: 'Item',
             description: 'This is a description'
         }
-    ]
+    ];
+
+    //console.log('current user:', UserService.currentUser);
+
 }]);

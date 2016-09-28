@@ -13,7 +13,7 @@
 
 //General
 @import "components/form-fields";
-@import "components/header";
+@import "components/header/header";
 
 //Components
 @import "components/login/user-info-form";
@@ -27,3 +27,4 @@
 @import "components/dashboard/dashboard-content";
 @import "components/dashboard/dashboard-matches";
 @import "components/dashboard/dashboard-toolbar";
+@import "components/dashboard/dashboard-trinkits-new";

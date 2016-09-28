@@ -73,8 +73,7 @@ gulp.task('watch', function() {
     gulp.watch(path.jsSrc + '/**/*.js', ['js']);
     gulp.watch(path.sassSrc + '/**/*.scss',['sass']);
     //gulp.watch(path.tmplSrc + '/*.html', ['templates']);
-
 });
 
-gulp.task('default', ['sass','js','watch','sync']);
+gulp.task('default', ['sass','js','watch']);
 

@@ -1,21 +1,32 @@
 @include add-grid(12);
 @include add-gutter(0);
 
+//Welcome Page
+.welcome-wrapper {
+  padding: 50px 100px 0 100px;
+
+  .content-left {
+    @include grid-span(7, 1);
+  }
+
+  .content-right {
+    @include grid-span(5, 8);
+  }
+}
+
 //Dashboard
 .dashboard-content-container {
   @include grid-span(9, 1);
 
   .trinkit-item-container {
-    //@include float-span(4, $grid: 12);
     float: left;
-    //display: inline-block;
-    //@include grid-span(3, 1, $output-style: 'float');
   }
 }
 
 .matches-container {
   @include grid-span(3, 10);
 }
+
 
 
 

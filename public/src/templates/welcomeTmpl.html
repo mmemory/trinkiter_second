@@ -1,7 +1,43 @@
-<div class="welcome-wrapper container">
 
-	<h2>Welcome to Trinkiter</h2>
-	<p>Better Classifieds</p>
-	<div ui-sref="register" class="button-auth">Register</div>
+<main class="welcome-wrapper container">
 
-</div>
+	<section class="content-left">
+		<header>
+			<h2>Like other classifieds services, only better.</h2>
+		</header>
+		<main>
+			<div class="trinkit-item">Trinkit</div>
+			<div class="trinkit-item">Trinkit 2</div>
+		</main>
+	</section>
+
+	<section class="content-right">
+
+		<main>
+			<section class="register-form">
+				<header>
+					<h2>Sign Up</h2>
+				</header>
+				<form action="">
+					<input ng-model="user.firstName" type="text" placeholder="First Name">
+					<input ng-model="user.lastName" type="text" placeholder="Last Name">
+					<input ng-model="user.username" type="text" placeholder="Username">
+					<input ng-model="user.email" type="text" placeholder="Email Address">
+					<input ng-model="user.password" type="password" placeholder="New Password">
+					<input ng-click="registerUser(user)" type="button" value="Sign Up">
+				</form>
+			</section>
+
+			<section class="login-form">
+				<header>
+					<h2>Login</h2>
+				</header>
+				<form action="">
+					<input ng-model="login.username" type="text" placeholder="Email">
+					<input ng-model="login.password" type="password" placeholder="Password">
+					<input ng-click="localAuth(login)" type="button" value="Login">
+				</form>
+			</section>
+		</main>
+	</section>
+</main>

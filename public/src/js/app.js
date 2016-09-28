@@ -8,12 +8,13 @@ var trinkiter = angular.module('trinkiter',['ui.router'])
         //     requireBase: false
         // });
 
-        $urlRouterProvider.otherwise("/welcome");
+        $urlRouterProvider.otherwise("/");
 
         $stateProvider
             .state('welcome', {
                 url: '/',
-                templateUrl: tmplPath+'welcomeTmpl.html'
+                templateUrl: tmplPath+'welcomeTmpl.html',
+                controller: 'welcomeCtrl'
             })
             .state('login', {
                 url: '/login',
@@ -27,12 +28,18 @@ var trinkiter = angular.module('trinkiter',['ui.router'])
             })
             .state('dashboard', {
                 url: '/dashboard',
+                abstract: true,
                 templateUrl: tmplPath+'dashboardTmpl.html',
                 controller: 'dashCtrl'
             })
             .state('dashboard.trinkits', {
                 url: '/trinkits',
                 templateUrl: tmplPath+'dashboard-trinkits-tmpl.html',
+                controller: 'trinkitCtrl'
+            })
+            .state('dashboard.trinkits.new', {
+                url: '/new',
+                templateUrl: tmplPath+'dashboard-trinkits-new-tmpl.html',
                 controller: 'trinkitCtrl'
             })
             .state('dashboard.account', {
