@@ -3,5 +3,24 @@
 	<div class="new-trinkit-inner">
 		<div class="close-modal" ui-sref="dashboard.trinkits">X</div>
 
+		<div class="new-trinkit-form-container">
+			<form ng-submit="createTrinkit(trinkit)">
+				<input ng-model="trinkit.title" type="text" placeholder="Title">
+				<input ng-model="trinkit.description" type="text" placeholder="Item Description">
+				<input ng-model="trinkit.imageUrl" type="text" placeholder="Image Url">
+				<select ng-model="trinkit.dollarValue">
+					<option value="200">test</option>
+					<option value="300">test 2</option>
+					<option value="400">test 3</option>
+				</select>
+				<select ng-model="trinkit.category">
+					<option value="electronics">test</option>
+					<option value="furniture">test 2</option>
+					<option value="400">test 3</option>
+				</select>
+				<input type="submit" value="Create">
+			</form>
+		</div>
+
 	</div>
 </div>

@@ -9,6 +9,7 @@ var session = require('express-session');
 var port = 3000;
 
 // DB connect
+mongoose.Promise = global.Promise;
 var mongoUri = 'mongodb://localhost/trinkiter';
 mongoose.connect(mongoUri);
 
@@ -26,6 +27,9 @@ app.use(passport.session());
 
 // Local imports
 var Users = require('./server/models/UserModel');
+var UserCtrl = require('./server/controllers/UserCtrl');
+var Trinkits = require('./server/models/TrinkitModel');
+var TrinkitCtrl = require('./server/controllers/TrinkitCtrl');
 
 // Authentication
 require('./server/config/auth')();
@@ -35,56 +39,48 @@ require('./server/config/auth')();
 //     res.sendFile(__dirname + '/public/index.html');
 // });
 
-app.post('/api/users/login', passport.authenticate('local'), function(req, res) {
-    var userInfo = req.user.userInfo;
-    var returnResponse = {
-        firstName: userInfo.firstName,
-        lastName: userInfo.lastName,
-        email: userInfo.email,
-        username: userInfo.username
-    };
-    res.status(200).redirect('/#/dashboard/trinkits');
-});
+function restrict(req, res, next) {
+    if(req.isUnauthenticated()) return res.status(403).json({message: 'please login'});
+    next();
+}
 
-app.post('/api/users/register', function(req, res) {
+app.post('/api/users/login', passport.authenticate('local'), UserCtrl.login);
+app.post('/api/users/register', UserCtrl.register);
+app.get('/api/users/current', restrict, UserCtrl.getCurrent);
 
-    var userPayload = {
-        userInfo: {
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            username: req.body.username,
-            email: req.body.email,
-            password: req.body.password
-        }
-    };
-
-    Users.findOne({'userInfo.username': userPayload.userInfo.username}, function(err, existingUser) {
-        if(err) res.status(500).json(err);
-
-        if(!existingUser) {
-            Users.create(userPayload, function(err, user) {
-                if(err) res.status(500).json(err);
-                else res.status(200).json(user);
-            });
-        } else {
-            res.status(409).json({message: 'User already exists by that username'});
-        }
+app.get('/api/trinkits/:category/:value', function(req, res) {
+    Trinkits.find(function(err, trinkits) {
+        res.json(trinkits);
     });
 });
 
-app.get('/api/users/current', function(req, res) {
-    console.log(req.session);
-    console.log('req.session.user',req.session.user);
-    console.log('req.user',req.user);
-    if(req.session.user) res.status(200).json(req.session.user);
-    else res.status(401).json({message: 'There is no user logged in'});
-});
-
 app.get('/api/trinkits', function(req, res) {
-
+    Trinkits.find(function(err, trinkits) {
+        res.json(trinkits);
+    });
 });
-app.post('/api/trinkits', function(req, res) {
 
+app.post('/api/trinkits', restrict, function(req, res) {
+
+    var newTrinkit = {
+        title: req.body.title,
+        description: req.body.description,
+        imageUrl: req.body.imageUrl,
+        category: req.body.category,
+        dollarValue: Number(req.body.dollarValue),
+        creator: mongoose.Types.ObjectId(req.user._id)
+    };
+
+    Trinkits.create(newTrinkit, function(err, trinkit) {
+        if(err) res.status(403).json(err);
+
+        Trinkits.findById({_id: trinkit._id})
+            .populate('creator')
+            .exec(function(err, result) {
+                if(err) res.send(err);
+                res.send(result);
+            });
+    });
 });
 app.put('/api/trinkits', function(req, res) {
 

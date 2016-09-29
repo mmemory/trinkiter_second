@@ -35,12 +35,12 @@ var trinkiter = angular.module('trinkiter',['ui.router'])
             .state('dashboard.trinkits', {
                 url: '/trinkits',
                 templateUrl: tmplPath+'dashboard-trinkits-tmpl.html',
-                controller: 'trinkitCtrl'
+                controller: 'dashCtrl'
             })
             .state('dashboard.trinkits.new', {
                 url: '/new',
                 templateUrl: tmplPath+'dashboard-trinkits-new-tmpl.html',
-                controller: 'trinkitCtrl'
+                controller: 'dashCtrl'
             })
             .state('dashboard.account', {
                 url: '/account',
