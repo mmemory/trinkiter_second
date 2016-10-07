@@ -10,6 +10,10 @@ var userModel = new mongoose.Schema({
         username: {type: String},
         password: {type: String}
     },
+    possibleMatches: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+    finalMatches: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+    trinkitHideList: [{type: mongoose.Schema.Types.ObjectId, ref: 'Trinkit'}],
+    userTrinkits: [{type: mongoose.Schema.Types.ObjectId, ref: 'Trinkit'}],
     createdOn: {type: Date, default: Date.now}
 });
 
@@ -18,7 +22,6 @@ userModel.pre('save', function(next) {
     if (!user.isModified('userInfo.password')) return next();
     bcrypt.hash(user.userInfo.password, 10, function(err, hash) {
         if(err) return next(err);
-
         user.userInfo.password = hash;
         next();
     });

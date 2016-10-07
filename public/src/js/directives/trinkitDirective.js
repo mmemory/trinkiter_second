@@ -5,13 +5,18 @@ trinkiter.directive('trTrinkit', [function() {
         templateUrl: './src/templates/trinkit-tmpl.html',
         replace: true,
         scope: {
-            trinkit: '=trinkitData'
+            trinkit: '=trinkitData',
+            like: '&onLike',
+            dislike: '&onDislike'
         },
         link: function(scope, elem, attrs) {
 
-            console.log(elem.parent()[0].clientWidth);
+            //console.log(elem.parent()[0].clientWidth);
 
-            elem.css('width', elem.parent()[0].clientWidth / 3);
+            //elem.css('width', elem.parent()[0].clientWidth / 3);
+
+
+
 
 
         }

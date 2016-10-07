@@ -4,11 +4,10 @@ var Trinkits = require('./../models/TrinkitModel');
 module.exports = {
 
     getCurrent: function(req, res) {
-        // if(req.user) res.status(200).json(req.user);
-        // else res.status(401).json({message: 'There is no user logged in'});
 
         Users.findById({_id: req.user._id})
             .select('-userInfo.password')
+            .populate('finalMatches')
             .exec(function(err, currentUser) {
                 res.status(200).json(currentUser);
             });
@@ -16,6 +15,11 @@ module.exports = {
 
     login: function(req, res) {
         res.status(200).json({message: 'logged in'});
+    },
+
+    logout: function(req, res) {
+        req.logout();
+        res.status(200).send({message: 'user logged out'});
     },
 
     register: function(req, res) {
@@ -36,7 +40,7 @@ module.exports = {
             if(!existingUser) {
                 Users.create(userPayload, function(err, user) {
                     if(err) res.status(500).json(err);
-                    else res.status(200).redirect('/#/dashboard/trinkits');
+                    else res.status(200).json({message:'User registered successfully'});
                 });
             } else {
                 res.status(409).json({message: 'User already exists by that username'});

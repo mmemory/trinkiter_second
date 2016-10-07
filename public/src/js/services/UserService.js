@@ -11,7 +11,7 @@ trinkiter.factory('UserService', ['$http',function($http) {
             return $http.post('/api/users/register', user);
         },
         getCurrent: function() {
-            return $http.get('/api/users/current')
+            return $http.get('/api/users/current');
         }
     }
 }]);

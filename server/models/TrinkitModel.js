@@ -8,6 +8,7 @@ var trinkitModel = new mongoose.Schema({
     imageUrl: {type: String},
     category: {type: String},
     dollarValue: {type: Number},
+    zipcode: {type: String},
     creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     usersWhoLiked: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
     usersWhoViewed: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],

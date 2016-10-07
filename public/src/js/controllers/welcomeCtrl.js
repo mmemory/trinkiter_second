@@ -10,10 +10,6 @@ trinkiter.controller('welcomeCtrl', function($scope, UserService, $state) {
     };
 
     $scope.localAuth = function(user) {
-        user = {
-            username: 'mmemory',
-            password: '1'
-        };
         UserService.localAuth(user)
             .then(function(data) {
                 console.log(data);

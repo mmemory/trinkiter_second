@@ -26,11 +26,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Local imports
-var Users = require('./server/models/UserModel');
 var UserCtrl = require('./server/controllers/UserCtrl');
-var Trinkits = require('./server/models/TrinkitModel');
 var TrinkitCtrl = require('./server/controllers/TrinkitCtrl');
-
 // Authentication
 require('./server/config/auth')();
 
@@ -44,44 +41,19 @@ function restrict(req, res, next) {
     next();
 }
 
+//User Endpoints
 app.post('/api/users/login', passport.authenticate('local'), UserCtrl.login);
 app.post('/api/users/register', UserCtrl.register);
 app.get('/api/users/current', restrict, UserCtrl.getCurrent);
+app.get('/api/users/logout', restrict, UserCtrl.logout);
 
-app.get('/api/trinkits/:category/:value', function(req, res) {
-    Trinkits.find(function(err, trinkits) {
-        res.json(trinkits);
-    });
-});
+//Trinkit Endpoints
+app.get('/api/trinkits/:userId', restrict, TrinkitCtrl.getTrinkitsByUserId);
+app.get('/api/trinkits/:category/:value', restrict, TrinkitCtrl.getTrinkitsByCategoryOrValue);
+app.get('/api/trinkits', restrict, TrinkitCtrl.getAllTrinkits);
+app.post('/api/trinkits/like/:trinkitId', restrict, TrinkitCtrl.likeTrinkit);
+app.post('/api/trinkits', restrict, TrinkitCtrl.createTrinkit);
 
-app.get('/api/trinkits', function(req, res) {
-    Trinkits.find(function(err, trinkits) {
-        res.json(trinkits);
-    });
-});
-
-app.post('/api/trinkits', restrict, function(req, res) {
-
-    var newTrinkit = {
-        title: req.body.title,
-        description: req.body.description,
-        imageUrl: req.body.imageUrl,
-        category: req.body.category,
-        dollarValue: Number(req.body.dollarValue),
-        creator: mongoose.Types.ObjectId(req.user._id)
-    };
-
-    Trinkits.create(newTrinkit, function(err, trinkit) {
-        if(err) res.status(403).json(err);
-
-        Trinkits.findById({_id: trinkit._id})
-            .populate('creator')
-            .exec(function(err, result) {
-                if(err) res.send(err);
-                res.send(result);
-            });
-    });
-});
 app.put('/api/trinkits', function(req, res) {
 
 });

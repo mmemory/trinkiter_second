@@ -3,7 +3,8 @@
 		<a class="toolbar-link" ui-sref-active="active" ui-sref="dashboard.trinkits">Trinkits</a>
 		<a ui-sref="dashboard.trinkits.new" class="toolbar-link">Add Trinkit</a>
 		<a class="toolbar-link" ui-sref-active="active" ui-sref="dashboard.account">Account</a>
-		<span>Welcome {{currentUser.firstName}}</span>
+		<span>Welcome {{currentUser.userInfo.firstName}}</span>
+		<span ng-click="logout()">Logout</span>
 	</div>
 
 	<section class="dashboard-content-container" ui-view></section>
@@ -12,6 +13,5 @@
 		<header><h2>Matches</h2></header>
 		<tr-match match-data="match" ng-repeat="match in matches"></tr-match>
 	</aside>
-
 
 </section>

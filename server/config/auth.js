@@ -10,6 +10,7 @@ module.exports = function() {
             if(!user) return done(null, false);
             user.comparePassword(password, function(err, isMatch) {
                 if(!isMatch) return done(null, false);
+                console.log(user.userInfo.username, 'is signed in.');
                 done(null, user);
             });
         });

@@ -20,6 +20,7 @@
     "angular-ui-router": "^0.3.1",
     "singularity": "^1.7.0",
     "breakpoint-sass": "^2.7.0",
-    "compass-sass-mixins": "*"
+    "compass-sass-mixins": "*",
+    "jquery": "^3.1.1"
   }
 }
